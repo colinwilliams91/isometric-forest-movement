@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: Enable collisions with objects/entities on the TileMap
 // TODO: Prevent Player from resetting to facing "down" when movement stops
 
 public class PlayerMovement : MonoBehaviour
