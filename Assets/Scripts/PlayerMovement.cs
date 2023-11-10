@@ -4,6 +4,7 @@ using UnityEngine;
 
 // TODO: Enable collisions with objects/entities on the TileMap
 // TODO: Prevent Player from resetting to facing "down" when movement stops
+// TODO: Look into "Tile Rules"
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,8 +14,24 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     Vector2 movement;
+    PlayerFX playerFX;
+
+    [Header("FX")]
+    [SerializeField] ParticleSystem dust;
 
     //SpriteRenderer spriteRenderer;
+
+    public void Awake()
+    {
+        playerFX = GetComponent<PlayerFX>();
+    }
+
+    public void Enter()
+    {
+        // kick up dust?
+        // 1. dispatch event, let another object handle...
+        // 2. 
+    }
 
     // Update is called once per frame
     void Update()
@@ -29,6 +46,13 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
+
+
+        // kick up dust...
+        if (movement.x != 0 || movement.y != 0)
+        {
+            playerFX.KickupDust();
+        }
     }
 
     // FixedUpdate doesn't change (like Update) so it is good for physics (reliable)
