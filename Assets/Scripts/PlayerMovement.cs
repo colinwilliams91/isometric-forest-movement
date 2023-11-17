@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
 
-    Vector2 movement;
+    public Vector2 movement;
     PlayerFX playerFX;
 
     [Header("FX")]
