@@ -5,6 +5,12 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public Animator animator;
+    public PlayerMovement playerMovement;
+
+    void Start()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,9 +26,28 @@ public class PlayerCombat : MonoBehaviour
     void Attack()
     {
         // Play an attack animation
-        animator.SetTrigger("Attack_Side");
+        //animator.SetTrigger("Attack_Side");
         // Detect all enemies in range of attack
 
         // Apply damage to the enemies
+
+        if (playerMovement.movement.x  > 0.1)
+        {
+            animator.SetTrigger("Attack_Right");
+        }
+        else if (playerMovement.movement.x < -0.1)
+        {
+            animator.SetTrigger("Attack_Left");
+        }
+        else if (playerMovement.movement.y > 0.1)
+        {
+            animator.SetTrigger("Attack_Back");
+        }
+        else if (playerMovement.movement.y < -0.1)
+        {
+            animator.SetTrigger("Attack_Front");
+        }
+        else
+            animator.SetTrigger("Attack_Right");
     }
 }
